@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drop for Africa Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <a class="logo" href="index.html">
+        <img src="DropForAfrica-300x106.png" alt="Drop for Africa Logo">
+      </a>
+      <button class="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+      <ul class="menu">
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="section-heading">
+      <h2>Admin Dashboard</h2>
+      <p>Live booking statistics and comment insights for all Drop for Africa reservations.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <article class="dashboard-card">
+        <h3 id="totalBookings">0</h3>
+        <span>Total bookings</span>
+      </article>
+      <article class="dashboard-card">
+        <h3 id="confirmedBookings">0</h3>
+        <span>Booked successfully</span>
+      </article>
+      <article class="dashboard-card">
+        <h3 id="commentCount">0</h3>
+        <span>Comments submitted</span>
+      </article>
+    </div>
+
+    <div class="stats-grid" style="margin-top: 2rem;">
+      <article class="dashboard-card">
+        <h3>Tours booked</h3>
+        <div id="tourSummary"></div>
+      </article>
+      <article class="dashboard-card">
+        <h3>Latest activity</h3>
+        <div id="recentList" class="recent-list"></div>
+      </article>
+    </div>
+
+    <section class="section" style="margin-top: 2rem;">
+      <div class="section-heading">
+        <h2>Client Booking Details</h2>
+        <p>All client contact and reservation details for follow up and booking support.</p>
+      </div>
+      <div id="allBookings" class="recent-list"></div>
+    </section>
+
+    <div style="margin-top: 2rem; text-align: center;">
+      <button class="btn btn-primary" id="refreshButton">Refresh stats</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Admin dashboard for Drop for Africa — live statistics powered by the responsive booking API.</p>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>

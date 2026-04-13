@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Safari Guide</title>
+  <meta name="description" content="Safari Guide — Explore Tsavo, lodges & book your safari via WhatsApp">
+  <style>
+    :root{--green:#1f8a5f;--dark:#0f1720;--muted:#6b7280;--card:#ffffff;--glass: rgba(255,255,255,0.06)}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#f6fbf7 0%, #eef6f2 100%); color:var(--dark)}
+    .container{max-width:1100px;margin:28px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;overflow:hidden;flex-shrink:0;background:url('images/cover-thumb.jpg') center/cover}
+    h1{font-size:20px;margin:0}
+    nav a{margin-left:12px;text-decoration:none;color:var(--dark);font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:22px;margin-top:18px}
+    .hero-card{background:linear-gradient(180deg,#fff 0%, #f7fff8 100%);padding:26px;border-radius:14px;box-shadow:0 10px 30px rgba(15,23,32,0.06)}
+    .hero h2{margin:0 0 8px;font-size:24px}
+    .lead{color:var(--muted);margin-bottom:16px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--green);color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn.ghost{background:transparent;border:2px solid var(--green);color:var(--green)}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:20px}
+    .lodge{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(15,23,32,0.06)}
+    .lodge img{width:100%;height:160px;object-fit:cover;display:block}
+    .lodge .body{padding:14px}
+    .lodge h3{margin:0 0 6px;font-size:18px}
+    .muted{color:var(--muted);font-size:14px}
+    .price{font-weight:800;margin-top:8px}
+    footer{margin-top:30px;padding-top:18px;border-top:1px solid #e6efe7;color:var(--muted)}
+    /* modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(4,8,12,0.45);visibility:hidden;opacity:0;transition:opacity .18s,visibility .18s}
+    .modal.open{visibility:visible;opacity:1}
+    .modal-panel{background:white;border-radius:12px;max-width:820px;width:94%;padding:18px;box-shadow:0 18px 60px rgba(12,22,30,0.25)}
+    .modal-content{display:grid;grid-template-columns:1fr 320px;gap:16px}
+    .gallery{display:grid;grid-template-columns:repeat(1,1fr);gap:8px;max-height:420px;overflow:auto}
+    .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+    .close{background:#eee;border-radius:8px;padding:6px 10px;border:0}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}.modal-content{grid-template-columns:1fr}.brand h1{display:none}}
+  </style>
+  <link rel="icon" href="images/favicon.png" type="image/png">
+</head>
+<body>
+  <!--
+    Safari Guide - single-file static website
+    INSTRUCTIONS: Replace placeholder images in /images (lodge1.jpg, lodge2.jpg, cover-thumb.jpg, etc.)
+    Replace PHONE_NUMBER in the JS (in international format, e.g. 254712345678) to enable WhatsApp booking.
+  -->
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden></div>
+        <div>
+          <h1>Safari Guide</h1>
+          <div class="muted">Explore Tsavo • Lodges • Book via WhatsApp</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#tsavo">About Tsavo</a>
+        <a href="#lodges">Lodges</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card" id="home">
+        <h2>Discover Tsavo National Park</h2>
+        <p class="lead">Tsavo is a vast wonderland of wildlife, dramatic landscapes and authentic safari lodges. Choose a lodge, view images and book directly via WhatsApp.</p>
+        <div class="cta">
+          <button class="btn" data-scroll-to="#lodges">View Lodges</button>
+          <button class="btn ghost" id="open-guide">Download Guide</button>
+        </div>
+
+        <div style="margin-top:18px">
+          <h3 style="margin-bottom:8px">Highlights</h3>
+          <ul style="margin:0;padding-left:18px;color:var(--muted)">
+            <li>Rich wildlife: elephants, lions, giraffes & zebras</li>
+            <li>Comfortable lodges with guided game drives</li>
+            <li>Custom packages and WhatsApp booking</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="hero-card" id="tsavo">
+        <h3>About Tsavo</h3>
+        <p class="muted">Tsavo East and Tsavo West together create one of Kenya’s largest protected areas. Expect red-dusted landscapes, large elephant herds and dramatic sunsets.</p>
+        <div style="margin-top:12px">
+          <strong class="muted">Best time:</strong> June — October (dry season)
+        </div>
+        <div style="margin-top:12px">
+          <button class="btn" onclick="openWhatsApp('General safari enquiry')">Enquire on WhatsApp</button>
+        </div>
+      </aside>
+    </section>
+
+    <section style="margin-top:22px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h2 id="lodges">Top Lodges</h2>
+        <div class="muted">Click a lodge to view images & book</div>
+      </div>
+
+      <div class="card-grid">
+        <!-- Lodge card 1 -->
+        <article class="lodge" data-lodge="Voi Wildlife Lodge">
+          <img src="images/lodge1.jpg" alt="Voi Wildlife Lodge">
+          <div class="body">
+            <h3>Voi Wildlife Lodge</h3>
+            <div class="muted">Voi, Tsavo East — Full board • Guided drives</div>
+            <div class="price">From $120 / night</div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn" onclick="openModal(this)">View</button>
+              <button class="btn ghost" onclick="bookWhatsApp('Voi Wildlife Lodge')">Book via WhatsApp</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lodge card 2 -->
+        <article class="lodge" data-lodge="Kibo Safari Camp">
+          <img src="images/lodge2.jpg" alt="Kibo Safari Camp">
+          <div class="body">
+            <h3>Kibo Safari Camp</h3>
+            <div class="muted">Amboseli area — Tented camp experience</div>
+            <div class="price">From $95 / night</div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn" onclick="openModal(this)">View</button>
+              <button class="btn ghost" onclick="bookWhatsApp('Kibo Safari Camp')">Book via WhatsApp</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lodge card 3 -->
+        <article class="lodge" data-lodge="Salt Lick Safari Lodge">
+          <img src="images/lodge3.jpg" alt="Salt Lick Safari Lodge">
+          <div class="body">
+            <h3>Salt Lick Safari Lodge</h3>
+            <div class="muted">Taita Hills — Luxury lodge & views</div>
+            <div class="price">From $180 / night</div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn" onclick="openModal(this)">View</button>
+              <button class="btn ghost" onclick="bookWhatsApp('Salt Lick Safari Lodge')">Book via WhatsApp</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Add more lodges as needed -->
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px">
+        <div>
+          <strong>Safari Guide</strong>
+          <div class="muted">Your trusted local safari partner</div>
+        </div>
+        <div class="muted">Phone / WhatsApp: <span id="phone-placeholder">+254 795 875 050</span></div>
+      </div>
+      <div style="margin-top:12px" class="muted">© <span id="year"></span> Safari Guide — All rights reserved</div>
+    </footer>
+  </div>
+
+  <!-- Modal for lodge gallery -->
+  <div class="modal" id="modal">
+    <div class="modal-panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <strong id="modal-title">Lodge name</strong>
+        <div>
+          <button class="close" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div>
+          <p id="modal-desc" class="muted">Beautiful lodge details, amenities and what to expect on your stay.</p>
+          <div style="margin-top:12px">
+            <button class="btn" id="modal-book">Book via WhatsApp</button>
+            <button class="btn ghost" onclick="closeModal()">Close</button>
+          </div>
+        </div>
+        <aside>
+          <div class="gallery" id="modal-gallery"></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== USER ACTIONS: set your phone number in international format (no + or leading zeros)
+    // Example for Kenya: 254712345678
+    const PHONE_NUMBER = '254795875050';
+
+    // Simple helper to open WhatsApp with a prefilled message
+    function openWhatsApp(message){
+      const text = encodeURIComponent(message);
+      if(!PHONE_NUMBER || PHONE_NUMBER.includes('REPLACE')){
+        alert('Please set PHONE_NUMBER in the site code to enable WhatsApp booking.');
+        return;
+      }
+      const url = `https://wa.me/${PHONE_NUMBER}?text=${text}`;
+      window.open(url, '_blank');
+    }
+
+    function bookWhatsApp(lodge){
+      const msg = `Hello, I want to book: ${lodge}. Please send me details about availability and rates.`;
+      openWhatsApp(msg);
+    }
+
+    // AUTO-POPULATED GENERAL GALLERY (single, cleaned implementation)
+    const generalGalleryPath = 'images/gallery/';
+    const generalGallery = [];
+    for(let i=1;i<=14;i++){ generalGallery.push(`${generalGalleryPath}img${i}.jpg`);} // img1.jpg ... img14.jpg
+
+    // grab modal elements (DOM is ready because script is at bottom)
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalGallery = document.getElementById('modal-gallery');
+    const modalBook = document.getElementById('modal-book');
+
+    function loadGallery(){
+      modalGallery.innerHTML = '';
+      generalGallery.forEach(src=>{
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Gallery image';
+        modalGallery.appendChild(img);
+      });
+    }
+
+    function openModal(btn){
+      // find lodge element
+      const lodge = btn.closest('.lodge');
+      const lodgeName = lodge.getAttribute('data-lodge') || lodge.querySelector('h3').innerText;
+      modalTitle.innerText = lodgeName;
+      modalDesc.innerText = lodge.querySelector('.muted').innerText + ' — Amenities: Breakfast, Lunch, Dinner, Game drives, Transfers.';
+      loadGallery();
+      modalBook.onclick = () => bookWhatsApp(lodgeName);
+      modal.classList.add('open');
+    }
+
+    function closeModal(){ modal.classList.remove('open'); }
+
+    // small helpers
+    document.getElementById('year').innerText = new Date().getFullYear();
+    document.querySelectorAll('[data-scroll-to]').forEach(b=>b.addEventListener('click',()=>{document.querySelector(b.getAttribute('data-scroll-to')).scrollIntoView({behavior:'smooth'})}));
+
+    // guide download demo - open a PDF in a new tab (replace with your guide file)
+    document.getElementById('open-guide').addEventListener('click',()=>{
+      window.open('docs/Safari_Guide.pdf','_blank');
+    });
+
+    // Accessibility: close modal on ESC
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+  </script>
+</body>
+</html>
